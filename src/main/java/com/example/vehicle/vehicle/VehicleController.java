@@ -21,6 +21,11 @@ public class VehicleController {
         return vehicleService.getAllVehicles();
     }
 
+    @GetMapping("/vehicle/today")
+    private List<Vehicle> getAllVehiclesByDate() {
+        return vehicleService.getAllVehiclesByDate();
+    }
+
     @PostMapping("/vehicle")
     private void save(@RequestBody Vehicle vehicle) {
         vehicleService.saveOrUpdate(vehicle);

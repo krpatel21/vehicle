@@ -15,8 +15,9 @@ public interface VehicleRepository extends CrudRepository<Vehicle, Long> {
 
     List<Vehicle> findAll();
 
-    @Query("SELECT * FROM VEHICLE where CAST(CREATED_TIME AS DATE)= '2020-06-19'")
-    List<Vehicle> findAll();
+    @Query(value = "SELECT * FROM VEHICLE where CAST(CREATED_TIME AS DATE) = ?1",
+            nativeQuery = true)
+    List<Vehicle> findAllByDate(String date);
 
     @Override
     void deleteById(Long integer);

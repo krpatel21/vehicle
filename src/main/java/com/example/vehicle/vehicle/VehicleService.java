@@ -2,6 +2,8 @@ package com.example.vehicle.vehicle;
 
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,5 +24,12 @@ public class VehicleService {
 
     public List<Vehicle> getAllVehicles() {
         return vehicleRepository.findAll();
+    }
+
+    public List<Vehicle> getAllVehiclesByDate() {
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate= formatter.format(date);
+        return vehicleRepository.findAllByDate(strDate);
     }
 }
