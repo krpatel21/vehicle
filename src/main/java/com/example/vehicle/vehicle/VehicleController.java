@@ -1,9 +1,6 @@
 package com.example.vehicle.vehicle;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,17 +14,17 @@ public class VehicleController {
     }
 
     @GetMapping("/vehicle")
-    private List<Vehicle> getAllVehicles() {
+    public List<Vehicle> getAllVehicles() {
         return vehicleService.getAllVehicles();
     }
 
-    @GetMapping("/vehicle/today")
-    private List<Vehicle> getAllVehiclesByDate() {
-        return vehicleService.getAllVehiclesByDate();
+    @GetMapping("/vehicle/date/{date}/type/{type}")
+    public List<Vehicle> getAllVehiclesByDate(@PathVariable String date, @PathVariable Type type) {
+        return vehicleService.getAllVehiclesByDate(date, type);
     }
 
     @PostMapping("/vehicle")
-    private void save(@RequestBody Vehicle vehicle) {
+    public void save(@RequestBody Vehicle vehicle) {
         vehicleService.saveOrUpdate(vehicle);
     }
 }
